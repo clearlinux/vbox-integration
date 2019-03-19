@@ -156,6 +156,15 @@ setup_install ()
         # Do not add new group
         sed -i -- 's/groupadd/true/g' ${f}
     done
+
+    # Ensure that support daemons for clipboard sharing, etc. will load
+    xclient=$(find ${INSTALL_DIR} -type f -name '[0-9][0-9]vboxadd-xclient' \
+        | head -1)
+    if [[ -f ${xclient} ]]; then
+        find /etc/xdg/autostart ${INSTALL_DIR} -type f -name vboxclient.desktop -exec \
+            sed -i \ "s|^Exec=.*|Exec=${xclient}|" {} \;
+    fi
+
     mkdir -p /etc/udev/rules.d
     mkdir -p /etc/ld.so.conf.d
     mkdir -p /etc/xdg/autostart
