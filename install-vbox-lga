@@ -168,9 +168,8 @@ setup_install ()
     mkdir -p /etc/udev/rules.d
     mkdir -p /etc/ld.so.conf.d
     mkdir -p /etc/xdg/autostart
-    echo -e "\n\nTo use Clear Linux GUI please do:\n\n
-    swupd bundle-add os-utils-gui\n
-    and then 'startx'"
+
+    echo "Guest Additions installation complete"
 }
 
 remove_tmp_files ()
